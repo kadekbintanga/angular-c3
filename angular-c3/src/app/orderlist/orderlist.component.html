@@ -5,15 +5,15 @@
     </div>
     <button mat-raised-button color="primary"><i class="fa fa-cart-plus" style="font-size: 200%; margin-right: 10px;"></i>Add to Cart</button>
     <div class="content-custom">
-        <mat-card class="card" >
+        <mat-card class="card" *ngFor="let order of dataOrder;let o = index">
             <mat-card-header>
-                <mat-card-title>$390</mat-card-title>
-                <mat-card-subtitle>By Filthy Frank · georgemiller@gmail.com</mat-card-subtitle>
+                <mat-card-title>{{ order.totalPrice }}</mat-card-title>
+                <mat-card-subtitle>By {{ order.customerName }} · {{ order.email }}</mat-card-subtitle>
             </mat-card-header>
             <mat-divider></mat-divider>
             <mat-card-content>
                 <mat-list>
-                    <mat-list-item>
+                    <mat-list-item *ngFor="let item of order.items; let i = index">
                         <i class="fas fa-tags" mat-list-icon></i>
                         <div mat-line>Video Card</div>
                         <div mat-line>ZOTAC GeForce GTX 1060 · $209</div>
@@ -22,6 +22,8 @@
                         <i class="fas fa-tags" mat-list-icon></i>
                         <div mat-line>Memory</div>
                         <div mat-line>CORSAIR Vengeance RGB Pro 16GB · $97</div>
+                        <div mat-line>{{ item.category }}</div>
+                        <div mat-line>{{ item.name }} · {{ item.price }}</div>
                     </mat-list-item>
                 </mat-list>
             </mat-card-content>

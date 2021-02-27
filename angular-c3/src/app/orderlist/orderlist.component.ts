@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Order, OrdersMockData, Item} from '../samples/orders-mock-data';
+import {MatDialog} from '@angular/material/dialog';
+import {NewOrderDialogComponent} from '../new-order-dialog/new-order-dialog.component';
+
 
 
 @Component({
@@ -13,9 +16,24 @@ export class OrderlistComponent implements OnInit {
   dataOrder: Order[] = this.orderList.orders;
 
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
+
 
   ngOnInit(): void {
   }
+
+  openNewOrderDialog() {
+    const dialogRef = this.dialog.open(NewOrderDialogComponent, {
+      height: '400px',
+      width: '600px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
+
+
 
 }

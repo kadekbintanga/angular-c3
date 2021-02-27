@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Add New Order</h2>
+<mat-dialog-content >
+    <mat-form-field>
+        <mat-label>Customer name <sup>*</sup></mat-label>
+        <input matInput
+               placeholder=""
+               formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Email  <sup>*</sup></mat-label>
+        <input matInput
+               placeholder=""
+               formControlName="email">
+    </mat-form-field>
+    <table class="example-full-width" cellspacing="0">
+        <tr>
+            <td>
+                <mat-form-field>
+                    <mat-label>Select Category <sup>*</sup></mat-label>
+                    <mat-select formControlName="category" [(value)]="selectedCategory">
+                        <mat-option *ngFor="let category of categorys" value=" {{category}}">{{ category}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <mat-label>Select Item <sup>*</sup></mat-label>
+                    <mat-select formControlName="item" [(value)]="selectedItem">
+                        <div *ngIf="selectedCategory == 'CPU'"><mat-option *ngFor="let item of cpuItems" value=" {{item}}">{{ item}}</mat-option></div>
+                        <div *ngIf="selectedCategory == 'Motherboard'"><mat-option *ngFor="let item of motherboardItems" value=" {{item}}">{{ item}}</mat-option></div>
+
+                    </mat-select>
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Submit</button>
+</mat-dialog-actions>
+
